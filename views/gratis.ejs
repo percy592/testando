@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Turbinar Perfil">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A turbinar perfil é o maior fornecedor de serviços para mídias sociais, prezamos qualidade e rapidez nas entregas do serviço">
+    <meta name="keywords" content="comprar seguidores, compra seguidores, compra seguidores instagram, comprar seguidores hoje, painel smm, comprar curtidas instagram, comprar curtidas, comprar visualizações instagram, comprar seguidor, seguidores instagram, curtidas instagram, visualizações instagram, visualizações, instagram, insta, vender seguidores, vender seguidores no instagram, tiktok, seguidores tiktok, curtidas tiktok, kwai">
+    <meta property="og:locale" content="pt-BR">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="A turbinar perfil é o maior fornecedor de serviços para mídias sociais, prezamos qualidade e rapidez nas entregas do serviço">
+    <meta property="og:url" content="https://turbinarperfil.fun">
+    <title>Checkout - Turbinar Perfil</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+</head>
+<body>
+    <div class="main_gratis">
+        <header>
+            <div class="container_logo">
+                <a href="/"><img src="logo.webp" alt="Logo Impulsionar Perfil"></a>
+            </div>
+            <nav>
+                <ul>
+                    <li class="none_menu"><a href="/">Inicio</a></li>
+                    <li class="none_menu"><a href="/">Serviços</a></li>
+                    <li class="none_menu"><a href="/termos">Termos de Uso</a></li>
+                    <li class="suporte none_menu"><a href="https://wa.me/message/VPCOLQZBW23LO1">Suporte</a></li>
+                    <li><a href="/pedido" class="contato_header contato_checkout">Ver pedido</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <div class="container_gratis">
+                <div class="gratis">
+                    <h1>Teste Grátis</h1>
+                    <p>Seguidores Instagram</p>
+                    <div class="grt_ct">
+                        <form method="post" action="/gratis" onsubmit="return validaGratis()">
+                            <label>
+                                Digite o link ou @nome do perfil<span style="color: rgb(255, 72, 0); font-size: 20px;">*</span>
+                                <input type="text" placeholder="Cole link ou @nome do perfil" name="link" id="link">
+                            </label>
+                            <p class="info_gratis">Clique no link ou no icone e compartilhe com 5 pessoas</p>
+                            <a href="whatsapp://send?text=🚨 ATENÇÃO 🚨%0A%0A Compre Seguidores e Curtidas Reais para seu Instagram 🚀 %0A%0A Seguidores apartir de R$ 4,97🔥 %0A Curtidas apartir de R$ 2,97🔥%0A %0A     https://turbinarperfil.fun" id="compartilhar">https://turbinarperfil.fun</a>
+                            <a href="whatsapp://send?text=🚨 ATENÇÃO 🚨%0A%0A Compre Seguidores e Curtidas Reais para seu Instagram 🚀 %0A%0A Seguidores apartir de R$ 4,97🔥 %0A Curtidas apartir de R$ 2,97🔥%0A %0A     https://turbinarperfil.fun" id="iconeCompartilhar" class="icone-gr">
+                                <img src="zap.png">
+                            </a>
+                            <button id="btn_compartilhamento">GANHAR 20 SEGUIDORES</button>
+                        </form>
+                        <span class="msg_gratis">Pedido efetuado com sucesso!</span>
+                    </div>
+                </div>
+            </div>
+            <div class="info_sobre">
+                <h1>Oque é o Teste Grátis?</h1>
+                <p>Ganhe 20 seguidores brasileiros compartilhando o link com apenas 5 pessoas. Nós não solicitamos sua senha, mantendo a segurança do seu perfil.</p>
+                <br>
+                <p>Necessário que seu perfil esteja público para receber os seguidores</p>
+                <br>
+                <h2>Qual diferença dos seguidores comprados e do teste grátis</h2>
+                <br>
+                <p>Seguidores <strong>teste grátis</strong></p>
+                <ul>
+                    <li>❌ Velocidade</li>
+                    <li>❌ Escolher Genêro</li>
+                    <li>❌ Quantidade</li>
+                    <li>❌ Escolher Estado</li>
+                </ul>
+                <br>
+                <p>Seguidores comprados</p>
+                <ul>
+                    <li>⚡ Velocidade</li>
+                    <li>✅ Escolher Genêro</li>
+                    <li>✅ Quantidade</li>
+                    <li>✅ Escolher Estado</li>
+                    <li>✅ Qualidade</li>
+                </ul>
+                <br>
+                <p>O teste grátis é uma forma de passar mais confiança e mostrar que pode confiar no nosso trabalho, funciona apenas uma vez por perfil.</p>
+                <br>
+            </div>
+        </main>
+        <script>
+     
+     let compartilhar = document.getElementById('compartilhar');
+     let msg_gratis = document.querySelector(".msg_gratis");
+     let btn_compartilhamento = document.getElementById('btn_compartilhamento');
+     let iconeCompartilhar = document.getElementById('iconeCompartilhar')
+     let link = document.getElementById("link");
+     let contagem = 0;
+
+     compartilhar.addEventListener('click', () => {
+        contagem++;
+     })
+
+     iconeCompartilhar.addEventListener('click', () => {
+        contagem++;
+     })
+
+     const validaGratis = () => {
+        if(link.value !== '' && link.value !== undefined){
+            if(contagem >= 2){
+                msg_gratis.style.display = "block";
+                return true;
+        }else{
+            alert("COMPARTILHE O LINK PARA GANHAR 20 SEGUIDORES GRÁTIS")
+            return false;
+        }
+        }else{
+            alert("COLE LINK OU @NOME DE USUARIO")
+            return false;
+        }
+     }
+
+
+        </script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Turbinar Perfil">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A turbinar perfil é o maior fornecedor de serviços para mídias sociais, prezamos qualidade e rapidez nas entregas do serviço">
+    <meta name="keywords" content="comprar seguidores, compra seguidores, compra seguidores instagram, comprar seguidores hoje, painel smm, comprar curtidas instagram, comprar curtidas, comprar visualizações instagram, comprar seguidor, seguidores instagram, curtidas instagram, visualizações instagram, visualizações, instagram, insta, vender seguidores, vender seguidores no instagram, tiktok, seguidores tiktok, curtidas tiktok, kwai">
+    <meta property="og:locale" content="pt-BR">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="A turbinar perfil é o maior fornecedor de serviços para mídias sociais, prezamos qualidade e rapidez nas entregas do serviço">
+    <meta property="og:url" content="https://turbinarperfil.fun">
+    <title>Pedido - Turbinar Perfil</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=site_key"></script>
+
+</head>
+
+<body>
+    <div class="bg_main_pedido">
+        <header>
+            <div class="container_logo">
+                <a href="/"><img src="logo.webp" alt="Logo turbinar Perfil"></a>
+            </div>
+            <nav>
+                <ul>
+                    <li class="none_menu"><a href="/">Inicio</a></li>
+                    <li class="none_menu"><a href="/">Serviços</a></li>
+                    <li class="none_menu"><a href="/termos">Termos de Uso</a></li>
+                    <li class="suporte none_menu"><a href="https://wa.me/message/VPCOLQZBW23LO1">Suporte</a></li>
+                    <li><a href="" class="contato_header">Ver pedido</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="modal_pedido ">
+                <h2>Buscar Pedidos</h2>
+                <p>Informe seu e-mail ou telefone para consultar informações sobre os seus pedidos</p>
+                <input type="email" placeholder="exemplo@email.com" id="emailpedido" name="email">
+                <button type="submit" onclick="modal_pedido()">Buscar</button>
+            </div>
+            <div class="container_pedidos container_pedidos_none">
+                <h2>Gerencie seus pedidos</h2>
+
+
+                <div class="container_ped">
+
+                </div>
+            </div>
+
+            <footer class="footer_pedido">
+                <div class="container_footer">
+                    <nav>
+                        <ul>
+                            <li>Inicio</li>
+                            <li>Serviços</li>
+                            <li>Contato</li>
+                        </ul>
+
+                    </nav>
+                    <div class="footer_imagem">
+                        <img src="segurancaimage.webp">
+                    </div>
+                </div>
+                <p>Copyright © 2023 - turbinarperfil - Não temos nenhuma relação com a Meta ou qualquer outra rede
+                    social</p>
+            </footer>
+        </main>
+
+        <script>
+
+            let emailpedido = document.getElementById('emailpedido')
+            let container_pedidos = document.querySelector('.container_pedidos');
+            let modal_pedidos = document.querySelector('.modal_pedido')
+            let table_pedidos = document.querySelector('.container_ped')
+            let localGet = localStorage.getItem('token');
+            let contato_header = document.querySelector(".contato_header");
+
+            contato_header.addEventListener('click', () => {
+                localStorage.removeItem('token');
+            })
+
+            if (localGet !== "" && localGet !== null && localGet !== undefined) {
+                fetch('/pedido', {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ token: localGet })
+                })
+                    .then(data => {
+                        return data.json();
+                    })
+                    .then((resp) => {
+                        if (resp.response.length > 0) {
+                            container_pedidos.classList.remove('container_pedidos_none')
+                            modal_pedidos.classList.add('modal_none')
+                            
+                            for (let i = resp.response.length - 1; i >= 0; i--) {
+                                let create = document.createElement('div');
+                                let creteAtt = document.createAttribute('class');
+                                creteAtt.value = "ct_pedido";
+                                let text = "";
+                                if (resp.response[i].status_service === "Partial") {
+                                    text = "Parcial";
+                                } else if (resp.response[i].status_service === "Pending" || resp.response[i].status_service === "Pendente" || resp.response[i].status_service === "pending") {
+                                    text = "Pendente";
+                                } else if (resp.response[i].status_service === "In progress" || resp.response[i].status_service === "in progress") {
+                                    text = "Em Progresso";
+                                } else if (resp.response[i].status_service === "Completed" || resp.response[i].status_service === "completed") {
+                                    text = "Completado";
+                                } else if (resp.response[i].status_service === "Processing" || resp.response[i].status_service === "processing") {
+                                    text = "Processando";
+                                } else if (resp.response[i].status_service === "Canceled" || resp.response[i].status_service === "canceled") {
+                                    text = "Cancelado";
+                                } else {
+                                    text = "Pendente";
+                                }
+
+                                create.innerHTML = `
+                            
+                            <div class="card_01">
+                            <div class="order">
+                               <p>${resp.response[i].service_id}</p>
+                            </div>
+                            <div class="servico">
+                               <p>${resp.response[i].service_description}</p>
+                            </div>
+                            </div>
+                            <div class="card_2">
+                            <div class="quantity">
+                               <span>Quantidade</span>
+                               <p>${resp.response[i].quantity_service}</p>
+                            </div>
+                            <div class="start">
+                                <span>Inicio</span>
+                               <p>${resp.response[i].start_count}</p>
+                            </div>
+                            <div class="remains">
+                               <span>Preço</span>
+                               <p>${resp.response[i].service_price}</p>
+                            </div>
+                            <div class="status">
+                               <span>Status</span>
+                               <p>${text}</p>
+                            </div>
+                            </div>`
+
+                                table_pedidos.appendChild(create)
+                            }
+                        }
+                    })
+            }
+
+            const modal_pedido = () => {
+                fetch('/pedido', {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email: emailpedido.value })
+                })
+                    .then(data => {
+                        return data.json();
+                    })
+                    .then((resp) => {
+                        let converte = JSON.stringify(resp.token);
+                        let local = localStorage.setItem('token', converte);
+                        if (resp.response.length > 0) {
+                            container_pedidos.classList.remove('container_pedidos_none')
+                            modal_pedidos.classList.add('modal_none')
+
+                            for (let i = resp.response.length - 1; i >= 0; i--) {
+                                let create = document.createElement('div');
+                                let text = "";
+                                if (resp.response[i].status_service === "Partial") {
+                                    text = "Parcial";
+                                } else if (resp.response[i].status_service === "Pending" || resp.response[i].status_service === "Pendente" || resp.response[i].status_service === "pending") {
+                                    text = "Pendente";
+                                } else if (resp.response[i].status_service === "In progress" || resp.response[i].status_service === "in progress") {
+                                    text = "Em Progresso";
+                                } else if (resp.response[i].status_service === "Completed" || resp.response[i].status_service === "completed") {
+                                    text = "Completado";
+                                } else if (resp.response[i].status_service === "Processing" || resp.response[i].status_service === "processing") {
+                                    text = "Processando";
+                                } else if (resp.response[i].status_service === "Canceled" || resp.response[i].status_service === "canceled") {
+                                    text = "Cancelado";
+                                } else {
+                                    text = "Pendente";
+                                }
+
+                                create.innerHTML = `
+                            
+                            <div class="card_01">
+                            <div class="order">
+                               <p>${resp.response[i].service_id}</p>
+                            </div>
+                            <div class="servico">
+                               <p>${resp.response[i].service_description}</p>
+                            </div>
+                            </div>
+                            <div class="card_2">
+                            <div class="quantity">
+                               <span>Quantidade</span>
+                               <p>${resp.response[i].quantity_service}</p>
+                            </div>
+                            <div class="start">
+                                <span>Inicio</span>
+                               <p>${resp.response[i].start_count}</p>
+                            </div>
+                            <div class="remains">
+                               <span>Preço</span>
+                               <p>${resp.response[i].service_price}</p>
+                            </div>
+                            <div class="status">
+                               <span>Status</span>
+                               <p>${text}</p>
+                            </div>
+                            </div>`
+
+                                table_pedidos.appendChild(create)
+                            }
+                        }
+                    })
+            }
+
+        </script>
+</body>
+
+</html>
